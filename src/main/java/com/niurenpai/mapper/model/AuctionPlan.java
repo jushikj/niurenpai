@@ -25,6 +25,7 @@ public class AuctionPlan {
 
     private Integer yn;
 
+
     public Long getId() {
         return id;
     }
