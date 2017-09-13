@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.AuctionPlanMapper">
+  <resultMap id="BaseResultMap" type="model.AuctionPlan">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="niuren_id" jdbcType="BIGINT" property="niurenId" />
+    <result column="guess_start_time" jdbcType="TIMESTAMP" property="guessStartTime" />
+    <result column="guess_end_time" jdbcType="TIMESTAMP" property="guessEndTime" />
+    <result column="auction_end_time" jdbcType="TIMESTAMP" property="auctionEndTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="city" jdbcType="INTEGER" property="city" />
+    <result column="job" jdbcType="INTEGER" property="job" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="yn" jdbcType="INTEGER" property="yn" />
+  </resultMap>
+</mapper>
