@@ -4,5 +4,10 @@
   <resultMap id="BaseResultMap" type="model.NiuRen">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="introduction_img_url" jdbcType="VARCHAR" property="introductionImgUrl" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="yn" jdbcType="INTEGER" property="yn" />
   </resultMap>
 </mapper>

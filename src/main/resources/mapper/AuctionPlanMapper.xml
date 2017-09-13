@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="model.AuctionPlan">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="niuren_id" jdbcType="BIGINT" property="niurenId" />
+    <result column="back_img_url" jdbcType="VARCHAR" property="backImgUrl" />
     <result column="guess_start_time" jdbcType="TIMESTAMP" property="guessStartTime" />
     <result column="guess_end_time" jdbcType="TIMESTAMP" property="guessEndTime" />
     <result column="auction_end_time" jdbcType="TIMESTAMP" property="auctionEndTime" />

@@ -7,6 +7,8 @@ public class AuctionPlan {
 
     private Long niurenId;
 
+    private String backImgUrl;
+
     private Date guessStartTime;
 
     private Date guessEndTime;
@@ -25,7 +27,6 @@ public class AuctionPlan {
 
     private Integer yn;
 
-
     public Long getId() {
         return id;
     }
@@ -40,6 +41,14 @@ public class AuctionPlan {
 
     public void setNiurenId(Long niurenId) {
         this.niurenId = niurenId;
+    }
+
+    public String getBackImgUrl() {
+        return backImgUrl;
+    }
+
+    public void setBackImgUrl(String backImgUrl) {
+        this.backImgUrl = backImgUrl;
     }
 
     public Date getGuessStartTime() {
