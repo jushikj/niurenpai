@@ -15,4 +15,15 @@
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="yn" jdbcType="INTEGER" property="yn" />
   </resultMap>
+
+
+  <resultMap id="AuctionPlanDataResultMap" type="model.AuctionPlan">
+    <id column="id" jdbcType="BIGINT" property="auctionPlanId" />
+    <result column="niuren_id" jdbcType="BIGINT" property="niurenId" />
+    <result column="back_img_url" jdbcType="VARCHAR" property="backImgUrl" />
+    <result column="auction_end_time" jdbcType="TIMESTAMP" property="auctionEndTime" />
+    <result column="city_name" jdbcType="VARCHAR" property="city" />
+    <result column="job_name" jdbcType="VARCHAR" property="job" />
+  </resultMap>
+
 </mapper>

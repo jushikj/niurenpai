@@ -1,17 +1,31 @@
 package com.niurenpai.mapper.model;
 
+import lombok.Data;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * 竞猜记录
+ */
+@Data
 public class GuessRecord {
     private Long id;
-
+    /**
+     * 拍卖计划id
+     */
     private Long auctionPlanId;
-
+    /**
+     * 牛人id
+     */
     private Long niurenId;
-
+    /**
+     * 用户id
+     */
     private String userId;
-
+    /**
+     * 竞猜金额
+     */
     private BigDecimal amount;
 
     private Date createTime;
@@ -22,75 +36,4 @@ public class GuessRecord {
 
     private Integer yn;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getAuctionPlanId() {
-        return auctionPlanId;
-    }
-
-    public void setAuctionPlanId(Long auctionPlanId) {
-        this.auctionPlanId = auctionPlanId;
-    }
-
-    public Long getNiurenId() {
-        return niurenId;
-    }
-
-    public void setNiurenId(Long niurenId) {
-        this.niurenId = niurenId;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public Integer getYn() {
-        return yn;
-    }
-
-    public void setYn(Integer yn) {
-        this.yn = yn;
-    }
 }

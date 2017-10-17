@@ -1,7 +1,10 @@
 package com.niurenpai.mapper.dao;
 
+import com.niurenpai.constant.dto.AuctionPlanData;
 import com.niurenpai.mapper.model.AuctionPlan;
 import org.apache.ibatis.annotations.*;
+
+import java.util.List;
 
 public interface AuctionPlanMapper {
 
@@ -54,4 +57,15 @@ public interface AuctionPlanMapper {
         "where id = #{id,jdbcType=BIGINT}"
     })
     int updateByPrimaryKey(AuctionPlan record);
+
+    @Select({
+            "select",
+            "id, niuren_id, guess_start_time, guess_end_time, auction_end_time, create_time, ",
+            "update_time, city, job, status, yn",
+            "from nrp_auction_plan,nrp_niuren,nrp_city",
+            "where id = #{id,jdbcType=BIGINT}"
+    })
+    @ResultMap("dao.AuctionPlanMapper.BaseResultMap")
+    List<AuctionPlanData> selectByPage(int city,int job,int startIndex,int pageSize);
+
 }

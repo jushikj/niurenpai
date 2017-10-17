@@ -1,9 +1,13 @@
 package com.niurenpai.service.impl;
 
+import com.niurenpai.constant.dto.AuctionPlanData;
+import com.niurenpai.constant.dto.AuctionPlanQuery;
 import com.niurenpai.mapper.dao.*;
 import com.niurenpai.service.CoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author meng.haoran
@@ -28,4 +32,9 @@ public class CoreServiceImpl implements CoreService{
     @Autowired
     UserMapper userMapper;
 
+    @Override
+    public List<AuctionPlanData> queryAuctionPlanData(AuctionPlanQuery auctionPlanQuery) {
+
+        return null;
+    }
 }

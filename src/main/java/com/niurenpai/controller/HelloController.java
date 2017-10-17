@@ -9,6 +9,9 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author meng.haoran
  * @create 2017/9/11 20:12
@@ -28,5 +31,10 @@ public class HelloController {
         User user = userMapper.getById(1);
 
         return user.toString();
+    }
+
+    public static void main(String[] args) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("rt",12344);
     }
 }

@@ -1,125 +1,53 @@
 package com.niurenpai.mapper.model;
 
+import lombok.Data;
+
 import java.util.Date;
 
+/**
+ * 拍卖计划
+ */
+@Data
 public class AuctionPlan {
+
     private Long id;
-
+    /**
+     * 牛人id
+     */
     private Long niurenId;
-
+    /**
+     * 背景图
+     */
     private String backImgUrl;
-
+    /**
+     * 竞猜开始时间
+     */
     private Date guessStartTime;
-
+    /**
+     * 竞猜结束时间
+     */
     private Date guessEndTime;
-
+    /**
+     * 竞拍结束时间
+     */
     private Date auctionEndTime;
 
     private Date createTime;
 
     private Date updateTime;
-
+    /**
+     * 城市
+     */
     private Integer city;
-
+    /**
+     * 职位大类
+     */
     private Integer job;
-
+    /**
+     * 状态
+     */
     private Integer status;
 
     private Integer yn;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getNiurenId() {
-        return niurenId;
-    }
-
-    public void setNiurenId(Long niurenId) {
-        this.niurenId = niurenId;
-    }
-
-    public String getBackImgUrl() {
-        return backImgUrl;
-    }
-
-    public void setBackImgUrl(String backImgUrl) {
-        this.backImgUrl = backImgUrl;
-    }
-
-    public Date getGuessStartTime() {
-        return guessStartTime;
-    }
-
-    public void setGuessStartTime(Date guessStartTime) {
-        this.guessStartTime = guessStartTime;
-    }
-
-    public Date getGuessEndTime() {
-        return guessEndTime;
-    }
-
-    public void setGuessEndTime(Date guessEndTime) {
-        this.guessEndTime = guessEndTime;
-    }
-
-    public Date getAuctionEndTime() {
-        return auctionEndTime;
-    }
-
-    public void setAuctionEndTime(Date auctionEndTime) {
-        this.auctionEndTime = auctionEndTime;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    public Integer getCity() {
-        return city;
-    }
-
-    public void setCity(Integer city) {
-        this.city = city;
-    }
-
-    public Integer getJob() {
-        return job;
-    }
-
-    public void setJob(Integer job) {
-        this.job = job;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public Integer getYn() {
-        return yn;
-    }
-
-    public void setYn(Integer yn) {
-        this.yn = yn;
-    }
 }
