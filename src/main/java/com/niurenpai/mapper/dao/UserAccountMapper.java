@@ -5,12 +5,6 @@ import org.apache.ibatis.annotations.*;
 
 public interface UserAccountMapper {
 
-    @Delete({
-        "delete from nrp_user_account",
-        "where id = #{id,jdbcType=BIGINT}"
-    })
-    int deleteByPrimaryKey(Long id);
-
     @Insert({
         "insert into nrp_user_account (id, user_id, ",
         "total_amount, status, ",
@@ -23,18 +17,14 @@ public interface UserAccountMapper {
     })
     int insert(UserAccount record);
 
-    int insertSelective(UserAccount record);
-
     @Select({
         "select",
         "id, user_id, total_amount, status, create_time, update_time, yn",
         "from nrp_user_account",
         "where id = #{id,jdbcType=BIGINT}"
     })
-    @ResultMap("dao.UserAccountMapper.BaseResultMap")
+    @ResultMap("com.niurenpai.mapper.dao.UserAccountMapper.BaseResultMap")
     UserAccount selectByPrimaryKey(Long id);
-
-    int updateByPrimaryKeySelective(UserAccount record);
 
     @Update({
         "update nrp_user_account",

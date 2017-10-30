@@ -26,4 +26,6 @@ public class AuctionPlanData implements Serializable{
 
     private String job;
 
+    private int status;
+
 }

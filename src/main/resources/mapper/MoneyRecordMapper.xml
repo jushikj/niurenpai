@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="dao.MoneyRecordMapper">
-  <resultMap id="BaseResultMap" type="model.MoneyRecord">
+<mapper namespace="com.niurenpai.mapper.dao.MoneyRecordMapper">
+  <resultMap id="BaseResultMap" type="com.niurenpai.mapper.model.MoneyRecord">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="open_id" jdbcType="VARCHAR" property="openId" />
     <result column="busi_type" jdbcType="INTEGER" property="busiType" />
     <result column="busi_desc" jdbcType="VARCHAR" property="busiDesc" />
     <result column="amount" jdbcType="DECIMAL" property="amount" />

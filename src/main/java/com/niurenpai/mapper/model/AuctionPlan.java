@@ -2,6 +2,7 @@ package com.niurenpai.mapper.model;
 
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -39,14 +40,24 @@ public class AuctionPlan {
      * 城市
      */
     private Integer city;
+
+    private String cityDesc;
+
     /**
      * 职位大类
      */
     private Integer job;
+
+    private String jobDesc;
     /**
      * 状态
      */
     private Integer status;
+
+    /**
+     * 成交金额
+     */
+    private BigDecimal dealAmount;
 
     private Integer yn;
 

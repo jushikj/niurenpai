@@ -3,53 +3,36 @@ package com.niurenpai.mapper.dao;
 import com.niurenpai.mapper.model.GuessRecord;
 import org.apache.ibatis.annotations.*;
 
-public interface GuessRecordMapper {
+import java.util.List;
 
-    @Delete({
-        "delete from nrp_guess_record",
-        "where id = #{id,jdbcType=BIGINT}"
-    })
-    int deleteByPrimaryKey(Long id);
+public interface GuessRecordMapper {
 
     @Insert({
         "insert into nrp_guess_record (id, auction_plan_id, ",
-        "niuren_id, user_id, ",
-        "amount, create_time, ",
-        "update_time, status, ",
-        "yn)",
+        "niuren_id, open_id, ",
+        "amount, ",
+        " status",
+        ")",
         "values (#{id,jdbcType=BIGINT}, #{auctionPlanId,jdbcType=BIGINT}, ",
-        "#{niurenId,jdbcType=BIGINT}, #{userId,jdbcType=VARCHAR}, ",
-        "#{amount,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, ",
-        "#{updateTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, ",
-        "#{yn,jdbcType=INTEGER})"
+        "#{niurenId,jdbcType=BIGINT}, #{openId,jdbcType=VARCHAR}, ",
+        "#{amount,jdbcType=DECIMAL}, ",
+        " #{status,jdbcType=INTEGER} ",
+        ")"
     })
     int insert(GuessRecord record);
 
-    int insertSelective(GuessRecord record);
+    @Select({
+            "select * ",
+            "from nrp_guess_record",
+            "where open_id=#{openId} and yn=0 order by id desc"
+    })
+    @ResultMap("com.niurenpai.mapper.dao.GuessRecordMapper.BaseResultMap")
+    List<GuessRecord> selectByOpenId(@Param("openId") String openId);
 
     @Select({
-        "select",
-        "id, auction_plan_id, niuren_id, user_id, amount, create_time, update_time, status, ",
-        "yn",
-        "from nrp_guess_record",
-        "where id = #{id,jdbcType=BIGINT}"
+            "select count(id) ",
+            "from nrp_guess_record",
+            "where auction_plan_id=#{auctionPlanId} and yn=0 "
     })
-    @ResultMap("dao.GuessRecordMapper.BaseResultMap")
-    GuessRecord selectByPrimaryKey(Long id);
-
-    int updateByPrimaryKeySelective(GuessRecord record);
-
-    @Update({
-        "update nrp_guess_record",
-        "set auction_plan_id = #{auctionPlanId,jdbcType=BIGINT},",
-          "niuren_id = #{niurenId,jdbcType=BIGINT},",
-          "user_id = #{userId,jdbcType=VARCHAR},",
-          "amount = #{amount,jdbcType=DECIMAL},",
-          "create_time = #{createTime,jdbcType=TIMESTAMP},",
-          "update_time = #{updateTime,jdbcType=TIMESTAMP},",
-          "status = #{status,jdbcType=INTEGER},",
-          "yn = #{yn,jdbcType=INTEGER}",
-        "where id = #{id,jdbcType=BIGINT}"
-    })
-    int updateByPrimaryKey(GuessRecord record);
+    int countByPlanId(@Param("auctionPlanId") long auctionPlanId);
 }

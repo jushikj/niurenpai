@@ -22,7 +22,7 @@ public class GuessRecord {
     /**
      * 用户id
      */
-    private String userId;
+    private String openId;
     /**
      * 竞猜金额
      */

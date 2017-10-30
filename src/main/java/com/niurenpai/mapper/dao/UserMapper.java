@@ -13,6 +13,6 @@ import org.apache.ibatis.annotations.Select;
 public interface UserMapper {
 
     @Select("select * from nrp_user where id=#{id}")
-    @ResultMap("com.niurenpai.mapper.UserMapper.UserMapperResult")
+    @ResultMap("com.niurenpai.mapper.dao.UserMapper.UserMapperResult")
     User getById(long id);
 }

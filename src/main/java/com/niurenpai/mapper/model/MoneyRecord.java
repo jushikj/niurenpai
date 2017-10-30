@@ -14,7 +14,7 @@ public class MoneyRecord {
     /**
      * 用户id
      */
-    private String userId;
+    private String openId;
 
     private Integer busiType;
 
