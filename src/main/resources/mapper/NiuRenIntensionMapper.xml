@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.niurenpai.mapper.dao.NiuRenIntensionMapper">
+  <resultMap id="BaseResultMap" type="com.niurenpai.mapper.model.NiuRenIntension">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="niuren_id" jdbcType="BIGINT" property="niurenId" />
+    <result column="expect_job" jdbcType="VARCHAR" property="expectJob" />
+    <result column="current_city" jdbcType="VARCHAR" property="currentCity" />
+    <result column="target_city" jdbcType="VARCHAR" property="targetCity" />
+    <result column="current_salary" jdbcType="VARCHAR" property="currentSalary" />
+    <result column="expect_salary" jdbcType="VARCHAR" property="expectSalary" />
+    <result column="entry_time" jdbcType="VARCHAR" property="entryTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="yn" jdbcType="INTEGER" property="yn" />
+  </resultMap>
+
+</mapper>

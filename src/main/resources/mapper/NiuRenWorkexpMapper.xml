@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.niurenpai.mapper.dao.NiuRenWorkexpMapper">
+  <resultMap id="BaseResultMap" type="com.niurenpai.mapper.model.NiuRenWorkexp">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="niuren_id" jdbcType="BIGINT" property="niurenId" />
+    <result column="company" jdbcType="VARCHAR" property="company" />
+    <result column="job" jdbcType="VARCHAR" property="job" />
+    <result column="start_date" jdbcType="DATE" property="startDate" />
+    <result column="end_date" jdbcType="DATE" property="endDate" />
+    <result column="work_life" jdbcType="INTEGER" property="workLife" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="yn" jdbcType="INTEGER" property="yn" />
+  </resultMap>
+</mapper>

@@ -3,34 +3,29 @@ package com.niurenpai.mapper.model;
 import lombok.Data;
 
 import java.util.Date;
-
-/**
- * 牛人
- */
 @Data
 public class NiuRen {
-
     private Long id;
 
-    /**
-     * 介绍图片
-     */
-    private String introductionImgUrl;
+    private String headImgUrl;
 
-    /**
-     * 真是姓名
-     */
     private String name;
 
-    /**
-     * 花名
-     */
     private String nickName;
 
-    /**
-     * 职位名称
-     */
-    private String job;
+    private String idCard;
+
+    private Integer sex;
+
+    private Date birthday;
+
+    private Integer workLife;
+
+    private Integer education;
+
+    private String school;
+
+    private String introduction;
 
     private Date createTime;
 
