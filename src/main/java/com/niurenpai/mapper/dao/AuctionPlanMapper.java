@@ -1,10 +1,7 @@
 package com.niurenpai.mapper.dao;
 
 import com.niurenpai.mapper.model.AuctionPlan;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.ResultMap;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -47,4 +44,12 @@ public interface AuctionPlanMapper {
     })
     @ResultMap("com.niurenpai.mapper.dao.AuctionPlanMapper.BaseResultMap")
     List<AuctionPlan> selectAll();
+
+    @Select({
+            "select * ",
+            "from nrp_auction_plan",
+            "where plan_id = #{auctionPlanId}"
+    })
+    @ResultMap("com.niurenpai.mapper.dao.AuctionPlanMapper.BaseResultMap")
+    AuctionPlan selectByPlanId(@Param("auctionPlanId") String auctionPlanId);
 }

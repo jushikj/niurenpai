@@ -3,7 +3,7 @@
 <mapper namespace="com.niurenpai.mapper.dao.NiuRenIntensionMapper">
   <resultMap id="BaseResultMap" type="com.niurenpai.mapper.model.NiuRenIntension">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="niuren_id" jdbcType="BIGINT" property="niurenId" />
+    <result column="niuren_id" jdbcType="VARCHAR" property="niurenId" />
     <result column="expect_job" jdbcType="VARCHAR" property="expectJob" />
     <result column="current_city" jdbcType="VARCHAR" property="currentCity" />
     <result column="target_city" jdbcType="VARCHAR" property="targetCity" />

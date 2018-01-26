@@ -3,8 +3,8 @@
 <mapper namespace="com.niurenpai.mapper.dao.GuessRecordMapper">
   <resultMap id="BaseResultMap" type="com.niurenpai.mapper.model.GuessRecord">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="auction_plan_id" jdbcType="BIGINT" property="auctionPlanId" />
-    <result column="niuren_id" jdbcType="BIGINT" property="niurenId" />
+    <result column="auction_plan_id" jdbcType="VARCHAR" property="auctionPlanId" />
+    <result column="niuren_id" jdbcType="VARCHAR" property="niurenId" />
     <result column="open_id" jdbcType="VARCHAR" property="openId" />
     <result column="amount" jdbcType="DECIMAL" property="amount" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />

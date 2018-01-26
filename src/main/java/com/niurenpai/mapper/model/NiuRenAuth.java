@@ -4,24 +4,21 @@ import lombok.Data;
 import lombok.ToString;
 
 import java.util.Date;
+
 @Data
 @ToString
-public class NiuRenIntension {
+public class NiuRenAuth {
     private Long id;
 
     private String niurenId;
 
-    private String expectJob;
+    private String infoVerfy;
 
-    private String currentCity;
+    private String specSkill;
 
-    private String targetCity;
+    private String behave;
 
-    private String currentSalary;
-
-    private String expectSalary;
-
-    private String entryTime;
+    private String jobRank;
 
     private Date createTime;
 

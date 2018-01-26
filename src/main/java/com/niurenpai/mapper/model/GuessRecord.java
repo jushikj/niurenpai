@@ -14,11 +14,11 @@ public class GuessRecord {
     /**
      * 拍卖计划id
      */
-    private Long auctionPlanId;
+    private String auctionPlanId;
     /**
      * 牛人id
      */
-    private Long niurenId;
+    private String niurenId;
     /**
      * 用户id
      */

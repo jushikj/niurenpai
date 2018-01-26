@@ -3,6 +3,7 @@
 <mapper namespace="com.niurenpai.mapper.dao.AuctionPlanMapper">
   <resultMap id="BaseResultMap" type="com.niurenpai.mapper.model.AuctionPlan">
     <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="plan_id" jdbcType="VARCHAR" property="planId" />
     <result column="niuren_id" jdbcType="BIGINT" property="niurenId" />
     <result column="back_img_url" jdbcType="VARCHAR" property="backImgUrl" />
     <result column="guess_start_time" jdbcType="TIMESTAMP" property="guessStartTime" />
@@ -15,7 +16,9 @@
     <result column="job_desc" jdbcType="VARCHAR" property="jobDesc" />
     <result column="job" jdbcType="INTEGER" property="job" />
     <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="guess_count" jdbcType="BIGINT" property="guessCount" />
     <result column="deal_amount" jdbcType="DECIMAL" property="dealAmount" />
+    <result column="is_hot" jdbcType="INTEGER" property="isHot" />
     <result column="yn" jdbcType="INTEGER" property="yn" />
   </resultMap>
 

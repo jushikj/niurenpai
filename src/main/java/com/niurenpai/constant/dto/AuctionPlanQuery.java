@@ -1,5 +1,6 @@
 package com.niurenpai.constant.dto;
 
+import com.niurenpai.mapper.model.User;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -18,5 +19,7 @@ public class AuctionPlanQuery implements Serializable{
     private int pageNo;
 
     private int pageSize;
+
+    private User user;
 
 }

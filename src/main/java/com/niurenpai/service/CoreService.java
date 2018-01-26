@@ -2,6 +2,8 @@ package com.niurenpai.service;
 
 import com.niurenpai.constant.dto.AuctionPlanData;
 import com.niurenpai.constant.dto.AuctionPlanQuery;
+import com.niurenpai.constant.dto.NiurenDetailData;
+import com.niurenpai.constant.dto.NiurenDetailQuery;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -21,11 +23,10 @@ public interface CoreService {
 
     /**
      * 牛人详情
-     * @param auctionPlanId
-     * @param niurenId
+     * @param niurenDetailQuery
      * @return
      */
-    Map<String,Object> queryNiurenDetail(Long auctionPlanId,Long niurenId);
+    NiurenDetailData queryNiurenDetail(NiurenDetailQuery niurenDetailQuery) throws Exception;
 
     /**
      * 竞猜

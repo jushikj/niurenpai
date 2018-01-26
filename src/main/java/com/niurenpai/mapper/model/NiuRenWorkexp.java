@@ -10,7 +10,7 @@ import java.util.Date;
 public class NiuRenWorkexp {
     private Long id;
 
-    private Long niurenId;
+    private String niurenId;
 
     private String company;
 

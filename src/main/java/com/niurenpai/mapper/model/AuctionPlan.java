@@ -12,10 +12,19 @@ import java.util.Date;
 public class AuctionPlan {
 
     private Long id;
+
+    private String planId;
+
     /**
      * 牛人id
      */
-    private Long niurenId;
+    private String niurenId;
+
+    /**
+     * 编号
+     */
+    private String planNum;
+
     /**
      * 背景图
      */
@@ -55,9 +64,19 @@ public class AuctionPlan {
     private Integer status;
 
     /**
+     * 竞猜总人数
+     */
+    private long guessCount;
+
+    /**
      * 成交金额
      */
     private BigDecimal dealAmount;
+
+    /**
+     * 是否热门
+     */
+    private int isHot;
 
     private Integer yn;
 

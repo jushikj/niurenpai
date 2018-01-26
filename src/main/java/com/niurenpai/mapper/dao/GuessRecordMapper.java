@@ -35,4 +35,12 @@ public interface GuessRecordMapper {
             "where auction_plan_id=#{auctionPlanId} and yn=0 "
     })
     int countByPlanId(@Param("auctionPlanId") long auctionPlanId);
+
+    @Select({
+            "select * ",
+            "from nrp_guess_record",
+            "where open_id=#{openId} and auction_plan_id=#{auctionPlanId} and yn=0 order by id desc limit 1"
+    })
+    @ResultMap("com.niurenpai.mapper.dao.GuessRecordMapper.BaseResultMap")
+    GuessRecord selectByOpenIdAndPlanId(@Param("openId") String openId, @Param("auctionPlanId") String auctionPlanId);
 }
