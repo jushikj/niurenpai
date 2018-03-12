@@ -1,9 +1,8 @@
 package com.niurenpai.controller.api;
 
 import com.alibaba.fastjson.JSONArray;
-import com.niurenpai.constant.dto.AuctionPlanData;
-import com.niurenpai.constant.dto.AuctionPlanQuery;
-import com.niurenpai.constant.dto.ResultData;
+import com.niurenpai.constant.dto.*;
+import com.niurenpai.mapper.model.User;
 import com.niurenpai.service.CoreService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,6 +41,9 @@ public class CoreController {
         //名字，职位名称，拍卖倒计时，背景图
         //id,nickName,job,status(0:即将开始1：竞猜中2：竞拍中3：结束)，auctionEndTime(竞拍结束时间)
         AuctionPlanQuery auctionPlanQuery = new AuctionPlanQuery();
+        User user = new User();
+        user.setOpenId("123");
+        auctionPlanQuery.setUser(user);
         List<AuctionPlanData> dataList = coreService.queryAuctionPlanData(auctionPlanQuery);
 
         resultData.addData("auctionPlanList",dataList);
@@ -50,17 +52,52 @@ public class CoreController {
     }
 
     /**
+     * 首页
+     * @return
+     */
+    @ResponseBody
+    public String auctionList() {
+
+        ResultData resultData = ResultData.newInstance();
+        //分页查询竞拍计划列表
+        //名字，职位名称，拍卖倒计时，背景图
+        //id,nickName,job,status(0:即将开始1：竞猜中2：竞拍中3：结束)，auctionEndTime(竞拍结束时间)
+        AuctionPlanQuery auctionPlanQuery = new AuctionPlanQuery();
+        User user = new User();
+        user.setOpenId("123");
+        auctionPlanQuery.setUser(user);
+        List<AuctionPlanData> dataList = coreService.queryAuctionPlanData(auctionPlanQuery);
+
+        resultData.addData("auctionPlanList",dataList);
+
+        return JSONArray.toJSONString(resultData);
+    }
+
+
+    /**
      * 牛人详情
      * @return
      */
     @RequestMapping("/niurenpai/niuren/detail")
     @ResponseBody
-    public String niurenDetail(long auctionPlanId, long niurenId) {
+    public String niurenDetail(String auctionPlanId, String niurenId) {
 
         ResultData resultData = ResultData.newInstance();
         //头像，牛人介绍图片，问答，竞猜时间和状态，我的状态
         //headImageUrl,introductionImgUrl,[{quesion,answer}],guessStartTime,guessEndTime,auctionEndTime,guessSatus
-        Map<String,Object> result = coreService.queryNiurenDetail(auctionPlanId,niurenId);
+
+        NiurenDetailQuery query = new NiurenDetailQuery();
+        query.setAuctoinPlanId(auctionPlanId);
+        query.setNiurenId(niurenId);
+        User user = new User();
+        user.setOpenId("123");
+        query.setUser(user);
+        NiurenDetailData result = null;
+        try {
+            result = coreService.queryNiurenDetail(query);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         resultData.addData("niurenDetail",result);
 
@@ -73,7 +110,7 @@ public class CoreController {
      */
     @RequestMapping("/niurenpai/guess")
     @ResponseBody
-    public String guess(long auctionPlanId,String openId,String amount) {
+    public String guess(String auctionPlanId,String openId,String amount) {
         ResultData resultData = ResultData.newInstance();
         boolean result = coreService.guess(auctionPlanId,openId,new BigDecimal(amount));
         if (!result) {

@@ -12,25 +12,6 @@ import org.apache.ibatis.annotations.Update;
 
 public interface NiuRenAuthMapper {
 
-    @Delete({
-        "delete from nrp_niuren_auth",
-        "where id = #{id,jdbcType=BIGINT}"
-    })
-    int deleteByPrimaryKey(Long id);
-
-    @Insert({
-        "insert into nrp_niuren_auth (id, niuren_id, ",
-        "info_verfy, spec_skill, ",
-        "behave, job_rank, ",
-        "create_time, update_time, ",
-        "yn)",
-        "values (#{id,jdbcType=BIGINT}, #{niurenId,jdbcType=BIGINT}, ",
-        "#{infoVerfy,jdbcType=VARCHAR}, #{specSkill,jdbcType=VARCHAR}, ",
-        "#{behave,jdbcType=VARCHAR}, #{jobRank,jdbcType=VARCHAR}, ",
-        "#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, ",
-        "#{yn,jdbcType=INTEGER})"
-    })
-    int insert(NiuRenAuth record);
 
     @Select({
         "select",
@@ -39,20 +20,16 @@ public interface NiuRenAuthMapper {
         "from nrp_niuren_auth",
         "where id = #{id,jdbcType=BIGINT}"
     })
-    @ResultMap("dao.NiuRenAuthMapper.BaseResultMap")
+    @ResultMap("com.niurenpai.mapper.dao.NiuRenAuthMapper.BaseResultMap")
     NiuRenAuth selectByPrimaryKey(Long id);
 
-    @Update({
-        "update nrp_niuren_auth",
-        "set niuren_id = #{niurenId,jdbcType=BIGINT},",
-          "info_verfy = #{infoVerfy,jdbcType=VARCHAR},",
-          "spec_skill = #{specSkill,jdbcType=VARCHAR},",
-          "behave = #{behave,jdbcType=VARCHAR},",
-          "job_rank = #{jobRank,jdbcType=VARCHAR},",
-          "create_time = #{createTime,jdbcType=TIMESTAMP},",
-          "update_time = #{updateTime,jdbcType=TIMESTAMP},",
-          "yn = #{yn,jdbcType=INTEGER}",
-        "where id = #{id,jdbcType=BIGINT}"
+    @Select({
+            "select",
+            "id, niuren_id, info_verfy, spec_skill, behave, job_rank, create_time, update_time, ",
+            "yn",
+            "from nrp_niuren_auth",
+            "where niuren_id=#{niurenId} and yn=0 limit 1"
     })
-    int updateByPrimaryKey(NiuRenAuth record);
+    @ResultMap("com.niurenpai.mapper.dao.NiuRenAuthMapper.BaseResultMap")
+    NiuRenAuth selectByNiurenId(@Param("niurenId") String niurenId);
 }

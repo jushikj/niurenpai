@@ -60,4 +60,9 @@ public class NiurenDetailData implements Serializable {
      */
     private NiuRenAuth niuRenAuth;
 
+    /**
+     * 用户计划状态
+     */
+    private UserPlanStatus userPlanStatus;
+
 }

@@ -1,9 +1,6 @@
 package com.niurenpai.service.impl;
 
-import com.niurenpai.constant.dto.AuctionPlanData;
-import com.niurenpai.constant.dto.AuctionPlanQuery;
-import com.niurenpai.constant.dto.NiurenDetailData;
-import com.niurenpai.constant.dto.NiurenDetailQuery;
+import com.niurenpai.constant.dto.*;
 import com.niurenpai.mapper.dao.*;
 import com.niurenpai.mapper.model.*;
 import com.niurenpai.service.CoreService;
@@ -42,6 +39,12 @@ public class CoreServiceImpl implements CoreService{
     UserAccountMapper userAccountMapper;
     @Autowired
     UserMapper userMapper;
+    @Autowired
+    NiuRenWorkexpMapper niuRenWorkexpMapper;
+    @Autowired
+    NiuRenIntensionMapper niuRenIntensionMapper;
+    @Autowired
+    NiuRenAuthMapper niuRenAuthMapper;
 
     @Override
     public List<AuctionPlanData> queryAuctionPlanData(AuctionPlanQuery auctionPlanQuery) {
@@ -60,7 +63,7 @@ public class CoreServiceImpl implements CoreService{
             //牛人id
             auctionPlanData.setNiurenId(auctionPlan.getNiurenId());
             //拍卖编号
-            auctionPlanData.setPlanNum(auctionPlan.getPlanNum());
+            auctionPlanData.setPlanNum("NO."+auctionPlan.getPlanNum()+"号");
             //背景图
             auctionPlanData.setBackImgUrl(auctionPlan.getBackImgUrl());
             //计划描述 日期|城市|职业
@@ -83,7 +86,7 @@ public class CoreServiceImpl implements CoreService{
                 //竞猜中
                 auctionPlanData.setStatus(1);
                 //竞猜人数
-                auctionPlan.setGuessCount(auctionPlan.getGuessCount());
+                auctionPlanData.setGuessCount(auctionPlan.getGuessCount());
             }else if (now.after(guessEndTime) && now.before(auctionEndTime)) {
                 //竞拍中
                 auctionPlanData.setStatus(2);
@@ -126,81 +129,112 @@ public class CoreServiceImpl implements CoreService{
         }
 
         //计划编号
-        niurenDetailData.setAuctionPlanNum(auctionPlan.getPlanNum());
+        niurenDetailData.setAuctionPlanNum("NO."+auctionPlan.getPlanNum()+"号");
 
         //头像
         niurenDetailData.setNiurenHeadImgUrl(auctionPlan.getBackImgUrl());
 
         //简介-短
         //性别 年龄 学历 工作年限 城市
-        niurenDetailData.setNiurenDescShort(niuRen.getSex()==0?"女":"男"+" " +niuRen.getAge()+"岁"+" " +niuRen.getIntroduction()+" " + niuRen.getWorkLife()+"年工作经验 ");
+        String sex = niuRen.getSex()==0?"女":"男";
+        niurenDetailData.setNiurenDescShort(sex +" " +niuRen.getAge()+"岁"+" " +niuRen.getEducation()+" " + niuRen.getWorkLife()+"年工作经验 ");
 
+        //求职意向
+        niurenDetailData.setNiurenIntentionShort(niuRen.getIntroduction());
 
-        //简历图片
-        /*if (niuRen != null) {
-            result.put("introductionImgUrl",niuRen.getIntroductionImgUrl());
-        }
-        //问答
-        List<Interview> interviewList = interviewMapper.selectByNiuren(niurenId);
+        //简介
+        niurenDetailData.setNiurenDescDetail(niuRen.getIntroduction());
 
-        List<Map<String,String>> questions = new ArrayList<>();
-        if (!CollectionUtils.isEmpty(interviewList)) {
-            for (Interview interview : interviewList) {
-                Map<String,String> interviewMap = new HashMap<>();
-                interviewMap.put("question",interview.getQuestion());
-                interviewMap.put("answer",interview.getAnswer());
-                questions.add(interviewMap);
+        //个人信息
+        NiurenInfoData niurenInfoData = new NiurenInfoData();
+        niurenInfoData.setSex(niuRen.getSex()==0?"女":"男");
+        niurenInfoData.setBirthday(niuRen.getBirthday().toString());
+        niurenInfoData.setWorkLife(niuRen.getWorkLife()+"年");
+
+        niurenDetailData.setNiurenInfoData(niurenInfoData);
+
+        //工作经验
+        List<String> niurenWorkExp = new ArrayList<>();
+        List<NiuRenWorkexp> workexps = niuRenWorkexpMapper.selectByNiurenId(query.getNiurenId());
+        if (!CollectionUtils.isEmpty(workexps)) {
+            for (NiuRenWorkexp workexp : workexps) {
+                niurenWorkExp.add(workexp.getCompany()+" " + workexp.getJob() + " " + workexp.getWorkLife()+"年");
             }
         }
-        result.put("questions",questions);
 
-        //竞猜时间
-        AuctionPlan auctionPlan = auctionPlanMapper.selectByPrimaryKey(auctionPlanId);
+        niurenDetailData.setNiurenWorkExp(niurenWorkExp);
 
-        if (auctionPlan != null) {
-            //计划状态
-            Date guessStartTime = auctionPlan.getGuessStartTime();
-            Date guessEndTime = auctionPlan.getGuessEndTime();
-            Date auctionEndTime = auctionPlan.getAuctionEndTime();
-            Date now = new Date();
-            if (now.before(guessStartTime)) {
-                //即将开始
-                result.put("planStatus",0);
-            }else if (now.after(guessStartTime) && now.before(guessEndTime)) {
-                //竞猜中
-                result.put("planStatus",1);
-            }else if (now.after(guessEndTime) && now.before(auctionEndTime)) {
-                //竞拍中
-                result.put("planStatus",2);
-            } else {
-                //已结束
-                result.put("planStatus",3);
-            }
+        NiuRenIntension niuRenIntension = niuRenIntensionMapper.selectByNiurenId(query.getNiurenId());
+        //求职意向
+        niurenDetailData.setNiuRenIntension(niuRenIntension);
 
-            result.put("guessStartTime",guessStartTime);
-            result.put("guessEndTime",guessEndTime);
-            result.put("auctionEndTime",auctionEndTime);
+        //平台认证
+        NiuRenAuth niuRenAuth = niuRenAuthMapper.selectByNiurenId(query.getNiurenId());
+        niurenDetailData.setNiuRenAuth(niuRenAuth);
+
+        //用户计划状态
+        UserPlanStatus userPlanStatus = new UserPlanStatus();
+
+        //计划状态
+        Date guessStartTime = auctionPlan.getGuessStartTime();
+        Date guessEndTime = auctionPlan.getGuessEndTime();
+        Date auctionEndTime = auctionPlan.getAuctionEndTime();
+        Date now = new Date();
+        if (now.before(guessStartTime)) {
+            //即将开始
+            userPlanStatus.setPlanStatus(0);
+            //开始时间
+            userPlanStatus.setGuessStartTime(guessStartTime);
+        }else if (now.after(guessStartTime) && now.before(guessEndTime)) {
+            //竞猜中
+            userPlanStatus.setPlanStatus(1);
+            //竞猜人数
+            auctionPlan.setGuessCount(auctionPlan.getGuessCount());
+        }else if (now.after(guessEndTime) && now.before(auctionEndTime)) {
+            //竞拍中
+            userPlanStatus.setPlanStatus(2);
+        } else {
+            //已结束
+            userPlanStatus.setPlanStatus(3);
+        }
+        User user = query.getUser();
+        //用户竞猜状态
+        GuessRecord userGuessRecord = guessRecordMapper.selectByOpenIdAndPlanId(user.getOpenId(),auctionPlan.getPlanId());
+        if (userGuessRecord != null) {
+            userPlanStatus.setUserGuessStatus(1);
+            //竞猜金额
+            userPlanStatus.setUserGuessAmount(userGuessRecord.getAmount());
+        }else {
+            userPlanStatus.setUserGuessStatus(0);
         }
 
-        //我的竞猜状态 TODO
-        result.put("guessSatus",0);*/
+        //TODO 如果用户有竞拍权限，查询竞拍状态
+        niurenDetailData.setUserPlanStatus(userPlanStatus);
+
+        //TODO 曲线图
 
         return niurenDetailData;
     }
 
     @Override
-    public boolean guess(long auctionPlanId, String openId, BigDecimal amount) {
+    public boolean guess(String auctionPlanId, String openId, BigDecimal amount) {
 
         AuctionPlan auctionPlan = auctionPlanMapper.selectByPrimaryKey(auctionPlanId);
 
         //保存用户的竞猜记录
         GuessRecord guessRecord = new GuessRecord();
+        guessRecord.setAuctionPlanId(auctionPlanId);
         guessRecord.setOpenId(openId);
         guessRecord.setAmount(amount);
        // guessRecord.setAuctionPlanId(auctionPlanId);
         guessRecord.setStatus(0);
         guessRecord.setNiurenId(auctionPlan.getNiurenId());
         int i = guessRecordMapper.insert(guessRecord);
+
+        //更新计划中的更新次数
+
+        i = auctionPlanMapper.increGuessCount(auctionPlanId);
+
         return i>0;
     }
 

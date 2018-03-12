@@ -4,7 +4,8 @@
   <resultMap id="BaseResultMap" type="com.niurenpai.mapper.model.AuctionPlan">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="plan_id" jdbcType="VARCHAR" property="planId" />
-    <result column="niuren_id" jdbcType="BIGINT" property="niurenId" />
+    <result column="niuren_id" jdbcType="VARCHAR" property="niurenId" />
+    <result column="plan_num" jdbcType="VARCHAR" property="planNum"/>
     <result column="back_img_url" jdbcType="VARCHAR" property="backImgUrl" />
     <result column="guess_start_time" jdbcType="TIMESTAMP" property="guessStartTime" />
     <result column="guess_end_time" jdbcType="TIMESTAMP" property="guessEndTime" />

@@ -32,10 +32,10 @@ public interface AuctionPlanMapper {
     @Select({
         "select * ",
         "from nrp_auction_plan",
-        "where id = #{id,jdbcType=BIGINT}"
+        "where plan_id = #{auctionPlanId}"
     })
     @ResultMap("com.niurenpai.mapper.dao.AuctionPlanMapper.BaseResultMap")
-    AuctionPlan selectByPrimaryKey(Long id);
+    AuctionPlan selectByPrimaryKey(@Param("auctionPlanId") String auctionPlanId);
 
     @Select({
             "select * ",
@@ -52,4 +52,8 @@ public interface AuctionPlanMapper {
     })
     @ResultMap("com.niurenpai.mapper.dao.AuctionPlanMapper.BaseResultMap")
     AuctionPlan selectByPlanId(@Param("auctionPlanId") String auctionPlanId);
+
+
+    @Update("update nrp_auction_plan set guess_count=guess_count+1,update_time=now() where plan_id=#{auctionPlanId}")
+    int increGuessCount(@Param("auctionPlanId") String auctionPlanId);
 }

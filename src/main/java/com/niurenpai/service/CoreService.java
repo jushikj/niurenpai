@@ -35,7 +35,7 @@ public interface CoreService {
      * @param amount
      * @return
      */
-    boolean guess(long auctionPlanId,String openId,BigDecimal amount);
+    boolean guess(String auctionPlanId,String openId,BigDecimal amount);
 
     /**
      * 竞猜记录
